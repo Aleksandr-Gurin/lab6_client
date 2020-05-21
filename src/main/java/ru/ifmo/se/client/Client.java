@@ -11,8 +11,6 @@ import java.nio.channels.DatagramChannel;
 import java.util.Scanner;
 
 public class Client {
-    private final InetAddress host;
-    private final int port;
     private MessageWriter messageWriter;
     private MessageReader messageReader;
     private SocketAddress address;
@@ -20,10 +18,8 @@ public class Client {
     private boolean connect = false;
     private Reader reader = new Reader();
 
-    public Client(int port) throws IOException {
-        this.host = InetAddress.getByName("localhost");
-        this.port = port;
-        address = new InetSocketAddress(host, port);
+    public Client(InetSocketAddress inetSocketAddress) throws IOException {
+        address = inetSocketAddress;
         channel.configureBlocking(false);
     }
 
